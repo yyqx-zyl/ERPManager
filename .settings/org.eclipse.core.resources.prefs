@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/jsp/inbound.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/index.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/inventory.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/outBoud.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/type.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/updatePwd.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/user.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/warning.jsp=UTF-8
+encoding//resources/datasource.properties=UTF-8
+encoding//resources/log4j.properties=UTF-8

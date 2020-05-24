@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.erp.dao.TypeDao">
+	<!-- 增加功能 -->
+	<insert id="addType" parameterType="Type">
+		insert into erp_type(typeName,typeNotes,createBy,createTime)
+		values(#{typeName},#{typeNotes},#{createBy},#{createTime})
+	</insert>
+	
+	<!-- 查询所有数据的方法 -->
+	<select id="getTypeList" resultType="Type">
+		select * from erp_type
+	</select>
+	
+	<!-- 删除数据的方法 -->
+	<delete id="deleteType">
+		delete from erp_type where tid=#{tid}
+	</delete>
+	
+	<select id="findById" resultType="Type">
+		select * from erp_type where tid=#{tid}
+	</select>
+	
+</mapper>	
+	

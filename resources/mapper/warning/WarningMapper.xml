@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.erp.dao.WarningDao">
+	<!-- 查询预警信息的映射 -->
+	<select id="getWarnList" resultMap="wList">
+		select w.*,s.productName,t.typeName from erp_warning w
+		inner join erp_stock s on(w.sid=s.sid)
+		inner join erp_type t on(w.typeId=t.tid)
+	</select>
+	
+	<resultMap type="Warning" id="wList" autoMapping="true">
+		<association property="type" javaType="Type">
+			<id column="tid" property="tid"/>
+			<result column="typeName" property="typeName"/>
+		</association>
+		<association property="stock" javaType="Stock">
+			<id column="sid" property="sid"/>
+			<result column="productName" property="productName"/>
+		</association>
+	</resultMap>
+</mapper>	

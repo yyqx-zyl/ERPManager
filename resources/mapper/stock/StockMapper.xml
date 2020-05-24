@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.erp.dao.StockDao">
+	<select id="getStockList" resultMap="slist">
+		SELECT s.*,t.* FROM erp_stock s
+			INNER JOIN erp_type t ON(s.`typeId`=t.`tid`)
+	</select>
+	
+	<resultMap type="Stock" id="slist" autoMapping="true">
+		<!-- 因为在库存表中有一个分类实体 -->
+		<association property="type" javaType="Type">
+			<id column="tid" property="tid"/>
+			<result column="typeName" property="typeName"/>
+		</association>
+	</resultMap>
+	
+</mapper>	

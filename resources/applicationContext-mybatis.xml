@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 1、扫描有注解的类，由Spring容器来进行管理 -->
+    <context:component-scan base-package="cn.erp">
+    	<context:exclude-filter type="annotation" 
+    	expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    
+    
+    <!-- 2、因为我们是将数据源书写在配置文件中，加载配置文件 -->
+    <context:property-placeholder location="classpath:datasource.properties"/>
+    <!-- 3、配置数据源 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+    	<property name="driverClassName" value="${driver}"></property>
+    	<property name="url" value="${url}"></property>
+    	<property name="username" value="${user}"></property>
+    	<property name="password" value="${password}"></property>
+    	<property name="initialSize" value="${initialSize}"></property>
+    	<property name="maxTotal" value="${maxActive}"></property>
+    	<property name="maxIdle" value="${maxIdle}"></property>
+    	<property name="minIdle" value="${minIdle}"></property>
+    	<property name="maxWaitMillis" value="${maxWait}"></property>
+    	<!-- sql心跳包  -->
+    	<property name="testWhileIdle" value="true"></property>
+    	<property name="testOnBorrow" value="false"></property>
+    	<property name="testOnReturn" value="false"></property>
+    	<property name="validationQuery" value="select 1"></property>
+    	<property name="timeBetweenEvictionRunsMillis" value="6000"></property>
+    	<property name="numTestsPerEvictionRun" value="${maxActive}"></property>
+    </bean>
+    <!-- 4、 SqlSessionFactoryBean-->
+    <bean id="sqlSessionFactory" 
+    	class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource"></property>
+    	<property name="typeAliasesPackage" value="cn.erp.pojo"></property>
+    	<property name="mapperLocations" value="classpath:mapper/**/*.xml"></property>
+    	
+    	<!-- 添加插件 -->
+    	<property name="plugins">
+    		<array>
+    			<bean class="com.github.pagehelper.PageInterceptor">
+    				<property name="properties">
+    					<props>
+    						<prop key="helperDialect">mysql</prop>
+    		<!-- reasonable：分页合理化参数，默认值为 false 。当该参数设置为 true 时， 
+                 pageNum<=0 时会查询第一 页， 
+                 pageNum>pages （超过总数时），会查询最后一页。
+                                           默认 false 时，直接根据参数进行查询。 -->
+    						<prop key="reasonable">true</prop>
+    					</props>
+    				</property>
+    			</bean>
+    		</array>
+    	</property>
+    	
+    	
+    </bean>
+    <!-- 5、配置DAO -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="basePackage" value="cn.erp.dao"></property>
+    	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+    <!-- 6、配置事务增强类 -->
+    <bean id="transactionManager"
+     class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!-- 7、配置事务增强方式 -->
+	<tx:advice id="txAdvice">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>    
+    <!-- 8、配置AOP切面 -->
+    <aop:config>
+    	<aop:pointcut expression="execution(* cn.erp..*(..))" id="myPointcut"/>
+    	<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut"/>
+    </aop:config>    
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.erp.dao.UserDao">
+	<!-- 定义一个验证登录的方法 -->
+	<select id="loginValider" resultType="User">
+		select * from erp_user where username=#{username}
+		 and userpassword=#{userpassword}
+	</select>
+	
+	<select id="getAll" resultType="User">
+		select * from erp_user
+	</select>
+	
+	
+	<select id="getUserList" resultType="User">
+		select * from erp_user
+	</select>
+	
+	
+	
+</mapper>	
+	
