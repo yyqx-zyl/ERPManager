@@ -10,8 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
-@NoArgsConstructor//ÎŞ²Î¹¹Ôì
-@AllArgsConstructor//´øËùÓĞ²ÎÊı¹¹Ôì
+@NoArgsConstructor//æ— å‚æ„é€ 
+@AllArgsConstructor//å¸¦æ‰€æœ‰å‚æ•°æ„é€ 
 public class User {
 	private int uid;
 	private String uname;
@@ -19,13 +19,13 @@ public class User {
 	private String userpassword;
 	private int gender;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@JSONField(format = "yyyy-MM-dd")//json¸ñÊ½ÈÕÆÚµÄ×¢½â
+	@JSONField(format = "yyyy-MM-dd")//jsonæ ¼å¼æ—¥æœŸçš„æ³¨è§£
 	private Date birthday;
 	private String phone;
-	private String place;//¼®¹á
+	private String place;//ç±è´¯
 	private String email;
-	private String Introg;//±¸×¢
-	private int  userrole;//ÓÃ»§½ÇÉ«
+	private String Introg;//å¤‡æ³¨
+	private int  userrole;//ç”¨æˆ·è§’è‰²
 	private int createBy;
 	private Date createTime;
 	private int modifyBy;

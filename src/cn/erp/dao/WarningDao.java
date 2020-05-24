@@ -13,7 +13,6 @@ import cn.erp.pojo.Warning;
 
 @Repository
 public interface WarningDao {
-    // 查询所有的数据
     List<Warning> getWarnList();
     @Insert("insert into erp_warning(sid,typeId,remark,warnNum,createBy,createTime)"
         + " values(#{sid},#{typeId},#{remark},#{warnNum},#{createBy},#{createTime})")

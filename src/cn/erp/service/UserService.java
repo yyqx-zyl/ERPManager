@@ -1,8 +1,8 @@
 package cn.erp.service;
 /**
- * ÓÃ»§²Ù×÷ÒµÎñ½Ó¿Ú
+ * ç”¨æˆ·æ“ä½œä¸šåŠ¡æ¥å£
  * @author lindy
- * @´´½¨Ê±¼ä 2020Äê5ÔÂ12ÈÕÉÏÎç10:43:25
+ * @åˆ›å»ºæ—¶é—´ 2020å¹´5æœˆ12æ—¥ä¸Šåˆ10:43:25
  */
 
 import java.util.List;
@@ -21,15 +21,15 @@ public interface UserService {
     List<User> getUserList();
     
     boolean updatePassword(User user);
-  //Ôö¼Ó
+  //å¢åŠ 
     boolean addUser(User user);
   	
-  	//ĞŞ¸Ä
+  	//ä¿®æ”¹
   	boolean updateUser(User user);
   	
   	boolean deleteUser(int uid);
   	
-  	//¸ù¾İid²éÑ¯
+  	//æ ¹æ®idæŸ¥è¯¢
   	User findById(int uid);
   	
     

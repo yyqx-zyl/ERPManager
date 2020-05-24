@@ -28,9 +28,9 @@ import cn.erp.pojo.Warning;
 import cn.erp.service.WarningServices;
 
 /**
- * Ô¤¾¯¹ÜÀíµÄ¿ØÖÆÀà
+ * é¢„è­¦ç®¡ç†çš„æ§åˆ¶ç±»
  * @author lindy
- * @´´½¨Ê±¼ä 2020Äê5ÔÂ22ÈÕÉÏÎç9:55:33
+ * @åˆ›å»ºæ—¶é—´ 2020å¹´5æœˆ22æ—¥ä¸Šåˆ9:55:33
  */
 @Controller
 @RequestMapping("/warn")
@@ -38,7 +38,7 @@ public class WarningController {
     @Autowired
     private WarningServices warningService;
     
-    // »ñµÃËùÓĞÔ¤¾¯ĞÅÏ¢µÄÇëÇó
+    // è·å¾—æ‰€æœ‰é¢„è­¦ä¿¡æ¯çš„è¯·æ±‚
     @RequestMapping(value="/getWarnList",method=RequestMethod.GET)
     public ModelAndView getWarnList(@RequestParam(name="currpage",required=false,defaultValue="1") int currpage) {
     	PageHelper.startPage(currpage, 3);
@@ -49,7 +49,7 @@ public class WarningController {
         return mav;
     }
     
-    // ±£´æÔ¤¾¯ĞÅÏ¢µÄ·½·¨
+    // ä¿å­˜é¢„è­¦ä¿¡æ¯çš„æ–¹æ³•
     @RequestMapping(value="/saveWarn",method=RequestMethod.POST)
     public String saveWarn(HttpServletRequest request,HttpSession session) {
         int typeId = Integer.parseInt(request.getParameter("typeId"));
@@ -57,7 +57,7 @@ public class WarningController {
         int warnNum = Integer.parseInt(request.getParameter("warnNum"));
         String remark = request.getParameter("remark");
         int uid = ((User)session.getAttribute("loginUser")).getUid();
-        // ´´½¨Ò»¸ö±£´æµÄÔ¤¾¯¶ÔÏó
+        // åˆ›å»ºä¸€ä¸ªä¿å­˜çš„é¢„è­¦å¯¹è±¡
         Warning warn = new Warning();
         warn.setTypeId(typeId);
         warn.setSid(sid);
@@ -74,7 +74,7 @@ public class WarningController {
     }
     
 
-	//É¾³ıĞÅÏ¢
+	//åˆ é™¤ä¿¡æ¯
 		@RequestMapping(value = "/deleteWarn",method = RequestMethod.GET)
 		@ResponseBody
 		public Object deleteWarn(@RequestParam("id") int wid) {
@@ -91,7 +91,7 @@ public class WarningController {
     
     
     
-		//¸ù¾İidÕÒÊµÌåµÄÇëÇó
+		//æ ¹æ®idæ‰¾å®ä½“çš„è¯·æ±‚
 		@RequestMapping(value = "/findById",method = RequestMethod.GET)
 		@ResponseBody
 		public Object findById(@RequestParam("id") int wid,Model model) {
@@ -100,13 +100,13 @@ public class WarningController {
 		}
 			
     
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		@RequestMapping(value = "/updateWarn",method = RequestMethod.POST,
 				produces="application/json;charset=UTF-8")
 		@ResponseBody
 		public Object updateInbound(Warning warn,HttpSession session) {
 			Map<String, Integer> map=new HashMap<String, Integer>();
-			//»ñµÃµ±Ç°µÇÂ¼ÓÃ»§id
+			//è·å¾—å½“å‰ç™»å½•ç”¨æˆ·id
 			int uid=((User)session.getAttribute("loginUser")).getUid();
 			warn.setModifyBy(uid);
 			warn.setModifyTime(new Date());

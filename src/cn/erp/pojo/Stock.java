@@ -18,6 +18,6 @@ public class Stock {
     private Date createTime;   
     private Integer modifyBy;   
     private Date modifyTime;
-    //private String typeName;// ·ÖÀàµÄÃû³Æ
-    private Type type; // ·ÖÀàÊµÌå
+    //private String typeName;// åˆ†ç±»çš„åç§°
+    private Type type; // åˆ†ç±»å®ä½“
 }

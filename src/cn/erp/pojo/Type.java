@@ -20,7 +20,7 @@ public class Type {
     private String typeNotes;
     private int createBy;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    // ½â¾öjson¸ñÊ½µÄÈÕÆÚ²Ù×÷
+    // è§£å†³jsonæ ¼å¼çš„æ—¥æœŸæ“ä½œ
     @JSONField(format = "yyyy-MM-dd")
     private Date createTime;
     private int modifyBy;

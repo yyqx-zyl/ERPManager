@@ -5,14 +5,14 @@ import java.util.List;
 import cn.erp.pojo.Type;
 
 public interface TypeService {
-    // ²éÑ¯ËùÓĞµÄ·ÖÀàĞÅÏ¢·½·¨
+    // æŸ¥è¯¢æ‰€æœ‰çš„åˆ†ç±»ä¿¡æ¯æ–¹æ³•
     List<Type> getTypeList();
-    // Ôö¼Ó·ÖÀàĞÅÏ¢µÄ·½·¨
+    // å¢åŠ åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     boolean addType(Type type);
-    // ĞŞ¸Ä·ÖÀàĞÅÏ¢µÄ·½·¨
+    // ä¿®æ”¹åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     boolean updateType(Type type);
-    // ¸ù¾İid²éÑ¯·ÖÀàĞÅÏ¢µÄ·½·¨
+    // æ ¹æ®idæŸ¥è¯¢åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     Type findById(int id);
-    // É¾³ı·ÖÀàĞÅÏ¢µÄ·½·¨
+    // åˆ é™¤åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     boolean deleteType(int id);
 }

@@ -10,17 +10,17 @@ import cn.erp.pojo.Type;
 
 @Repository
 public interface TypeDao {
-    // ²éÑ¯ËùÓĞµÄ·ÖÀàĞÅÏ¢·½·¨
+    // æŸ¥è¯¢æ‰€æœ‰çš„åˆ†ç±»ä¿¡æ¯æ–¹æ³•
     List<Type> getTypeList();
-    // Ôö¼Ó·ÖÀàĞÅÏ¢µÄ·½·¨
+    // å¢åŠ åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     int addType(Type type);
-    // ĞŞ¸Ä·ÖÀàĞÅÏ¢µÄ·½·¨
+    // ä¿®æ”¹åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     @Update("update erp_type set typeName=#{typeName},typeDescribe=#{typeDescribe},"
         + "typeNotes=#{typeNotes},modifyBy=#{modifyBy},modifyTime=#{modifyTime}"
         + " where tid=#{tid}")
     int updateType(Type type);
-    // ¸ù¾İid²éÑ¯·ÖÀàĞÅÏ¢µÄ·½·¨
+    // æ ¹æ®idæŸ¥è¯¢åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     Type findById(@Param("tid") int id);
-    // É¾³ı·ÖÀàĞÅÏ¢µÄ·½·¨
+    // åˆ é™¤åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     int deleteType(@Param("tid") int id);
 }

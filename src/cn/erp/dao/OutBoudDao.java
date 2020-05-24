@@ -14,7 +14,6 @@ import cn.erp.pojo.Warning;
 
 @Repository
 public interface OutBoudDao {
-    // 查询所有的数据
     List<OutBoud> getOutBoudList();
     
     @Insert("insert into erp_outboud(sid,typeId,outNum,remark,createBy,createTime)"

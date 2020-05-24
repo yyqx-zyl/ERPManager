@@ -4,9 +4,9 @@ import java.util.Date;
 
 import lombok.Data;
 /**
- * Ô¤¾¯ÊµÌåÀà
- * @author lindy
- * @´´½¨Ê±¼ä 2020Äê5ÔÂ22ÈÕÉÏÎç9:12:13
+ * å‡ºåº“
+ * @author Zylyyqx
+ * 2020å¹´5æœˆ24æ—¥
  */
 @Data
 public class OutBoud {
@@ -14,12 +14,12 @@ public class OutBoud {
     private int sid;
     private int typeId;
     private int outNum;
-    private String remark;//±¸×¢
+    private String remark;//å¤‡æ³¨
     private int createBy;
     private Date createTime;
     private int modifyBy;
     private Date modifyTime;
-    // Éæ¼°µ½¶à±í²éÑ¯
+    // æ¶‰åŠåˆ°å¤šè¡¨æŸ¥è¯¢
     private Type type;
     private Stock stock;
 }

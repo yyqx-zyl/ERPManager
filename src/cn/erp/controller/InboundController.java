@@ -40,7 +40,7 @@ public class InboundController {
 	@Autowired
 	private UserService userService;
 	
-	//¶¨ÒåÒ»¸ö»ñµÃËùÓĞÊı¾İ·½·¨
+	//å®šä¹‰ä¸€ä¸ªè·å¾—æ‰€æœ‰æ•°æ®æ–¹æ³•
 	@RequestMapping(value = "getInboundList",method = RequestMethod.GET)
 	public String  getInboundList(Model model,
 			@RequestParam(name = "currpage",required = false,defaultValue = "1") int currpage) {
@@ -52,14 +52,14 @@ public class InboundController {
 		model.addAttribute("list1", list1);
 		
 		PageInfo pageInfo=new PageInfo(list,4);
-		//½«·ÖÒ³ÊµÌå±£´æ
+		//å°†åˆ†é¡µå®ä½“ä¿å­˜
 		model.addAttribute(pageInfo);
 		return "inbound";
 	}
 	
 
 	
-	  //ÇëÇóËùÓĞµÄ·ÖÀàĞÅÏ¢
+	  //è¯·æ±‚æ‰€æœ‰çš„åˆ†ç±»ä¿¡æ¯
 	  
 	  @RequestMapping(value = "/getTypeList",method = RequestMethod.GET)
 	  @ResponseBody public Object getTypeList() 
@@ -70,12 +70,12 @@ public class InboundController {
 	  }
 	 
 	
-	//Ôö¼Ó
+	//å¢åŠ 
 		@RequestMapping(value = "/addInbound",method = RequestMethod.POST)
 		public String addType(Inbound inbound,
 				HttpSession session) {
 			Map<String, Integer> map=new HashMap<String, Integer>();
-			//»ñµÃµ±Ç°
+			//è·å¾—å½“å‰
 			int uid=((User)session.getAttribute("loginUser")).getUid();
 			inbound.setCreateBy(uid);
 			inbound.setWareDate(new Date());
@@ -89,7 +89,7 @@ public class InboundController {
 	
 	
 	
-	//É¾³ı¿â´æĞÅÏ¢
+	//åˆ é™¤åº“å­˜ä¿¡æ¯
 		@RequestMapping(value = "/deleteInbound",method = RequestMethod.GET)
 		@ResponseBody
 		public Object deleteInbound(@RequestParam("id") int inId) {
@@ -105,7 +105,7 @@ public class InboundController {
 		}
 	
 			
-	//¸ù¾İidÕÒÊµÌåµÄÇëÇó
+	//æ ¹æ®idæ‰¾å®ä½“çš„è¯·æ±‚
 		@RequestMapping(value = "/findById",method = RequestMethod.GET)
 		@ResponseBody
 		public Object findById(@RequestParam("id") int inId,Model model) {
@@ -115,13 +115,13 @@ public class InboundController {
 		}
 	
 		
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 		@RequestMapping(value = "/updateInbound",method = RequestMethod.POST,
 				produces="application/json;charset=UTF-8")
 		@ResponseBody
 		 public Object updateInbound(Inbound inbound,HttpSession session) {
 			Map<String, Integer> map=new HashMap<String, Integer>();
-			//»ñµÃµ±Ç°µÇÂ¼ÓÃ»§id
+			//è·å¾—å½“å‰ç™»å½•ç”¨æˆ·id
 			int uid=((User)session.getAttribute("loginUser")).getUid();
 			inbound.setModifyBy(uid);
 			inbound.setModifyTime(new Date());

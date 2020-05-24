@@ -30,23 +30,22 @@ import cn.erp.pojo.User;
 import cn.erp.service.UserService;
 
 /**
- * ¿ØÖÆÓÃ»§²Ù×÷µÄ¿ØÖÆÆ÷
+ * æ§åˆ¶ç”¨æˆ·æ“ä½œçš„æ§åˆ¶å™¨
  * @author lindy
- * @´´½¨Ê±¼ä 2020Äê5ÔÂ12ÈÕÉÏÎç11:36:16
+ * @åˆ›å»ºæ—¶é—´ 2020å¹´5æœˆ12æ—¥ä¸Šåˆ11:36:16
  */
-//@RequestMapping("/user")
 @Controller
 public class UserController {
     @Autowired
     private UserService userService;
     
-    // ÇëÇóµÄ·½·¨
+    // è¯·æ±‚çš„æ–¹æ³•
     @RequestMapping(value="/dologin",method=RequestMethod.POST)
     public String doLogin(@RequestParam("username") String userName,
         @RequestParam("userpassword") String userPassword,
         @RequestParam("code") String code,
         HttpSession session) {
-        // ÅĞ¶ÏÑéÖ¤ÂëµÄÖµÊÇ·ñÓë±£´æÔÚsessionÖĞµÄÖµÏàÍ¬
+        // åˆ¤æ–­éªŒè¯ç çš„å€¼æ˜¯å¦ä¸ä¿å­˜åœ¨sessionä¸­çš„å€¼ç›¸åŒ
         if(!((String)session.getAttribute("yzm")).equals(code)) {
             return "login";
         }
@@ -65,55 +64,55 @@ public class UserController {
         return "index";
     }
     
-    // ÍË³öµÄÇëÇó
+    // é€€å‡ºçš„è¯·æ±‚
     @RequestMapping(value="/loginOut",method=RequestMethod.GET)
     public String loginout(HttpSession session) {
         session.invalidate();
         return "login";
     }
     
-    // ¶¨ÒåÒ»¸ö»ñµÃÑéÖ¤ÂëµÄÇëÇó
+    // å®šä¹‰ä¸€ä¸ªè·å¾—éªŒè¯ç çš„è¯·æ±‚
     @RequestMapping(value="/CodeImg",method=RequestMethod.GET)
     public void getCode(HttpServletRequest req,HttpServletResponse resp) throws Exception {
-     // ÉèÖÃÏìÓ¦µÄ¸ñÊ½ÀàĞÍ
+     // è®¾ç½®å“åº”çš„æ ¼å¼ç±»å‹
         resp.setHeader("Content-Type", "image/jpeg");
-        // ¶¨ÒåÍ¼Æ¬µÄ¿íºÍ¸ß
+        // å®šä¹‰å›¾ç‰‡çš„å®½å’Œé«˜
         int w = 80;
         int h = 30;
-        // ÉùÃ÷Ò»¸öRGB¸ñÊ½µÄÄÚ´æÖĞµÄÍ¼Æ¬
+        // å£°æ˜ä¸€ä¸ªRGBæ ¼å¼çš„å†…å­˜ä¸­çš„å›¾ç‰‡
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        // ´´½¨Ò»¸ö»æÖÆÍ¼ÏñµÄ¶ÔÏó
+        // åˆ›å»ºä¸€ä¸ªç»˜åˆ¶å›¾åƒçš„å¯¹è±¡
         Graphics g = img.getGraphics();
-        // °Ñ±³¾°±ä°×É«
+        // æŠŠèƒŒæ™¯å˜ç™½è‰²
         g.setColor(Color.white);
         g.fillRect(0, 0, w, h);
-        // ÉèÖÃ×ÖÌå
+        // è®¾ç½®å­—ä½“
         g.setFont(new Font("aa", Font.BOLD, 18));
-        // ²úÉú²¢draw³ö4¸öËæ»úÊı×Ö
+        // äº§ç”Ÿå¹¶drawå‡º4ä¸ªéšæœºæ•°å­—
         Random r = new Random();
-        // ´´½¨Ò»¸ö±£´æÉú³ÉËÄ¸öÊıµÄ×Ö·û´®
+        // åˆ›å»ºä¸€ä¸ªä¿å­˜ç”Ÿæˆå››ä¸ªæ•°çš„å­—ç¬¦ä¸²
         String yzm = "";
         for (int i = 0; i < 4; i++) {
-            int a = r.nextInt(10);// Éú³É0~9Ö®¼äµÄËæ»úÕûÊı
-            int y = 15 + r.nextInt(10);// ²úÉúËæ»úµÄ´¹Ö±Î»ÖÃ
-            // ²úÉúËæ»úÑÕÉ«
+            int a = r.nextInt(10);// ç”Ÿæˆ0~9ä¹‹é—´çš„éšæœºæ•´æ•°
+            int y = 15 + r.nextInt(10);// äº§ç”Ÿéšæœºçš„å‚ç›´ä½ç½®
+            // äº§ç”Ÿéšæœºé¢œè‰²
             Color c = new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256));
             g.setColor(c);
             g.drawString("" + a, i * 15, y);
-            // °ÑÑéÖ¤Âë×ª»»Îª×Ö·û´®×·¼Óµ½yzmÖĞ
+            // æŠŠéªŒè¯ç è½¬æ¢ä¸ºå­—ç¬¦ä¸²è¿½åŠ åˆ°yzmä¸­
             yzm += a;
         }
-        // °Ñyzm·ÅÈësession
+        // æŠŠyzmæ”¾å…¥session
         req.getSession().setAttribute("yzm", yzm);
-        // »­¼¸Ìõ¸ÉÈÅÏß
+        // ç”»å‡ æ¡å¹²æ‰°çº¿
         for (int i = 0; i < 10; i++) {
-            // ²úÉúËæ»úÑÕÉ«
+            // äº§ç”Ÿéšæœºé¢œè‰²
             Color c = new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256));
             g.setColor(c);
             g.drawLine(r.nextInt(60), r.nextInt(30), r.nextInt(60), r.nextInt(30));
         }
-        g.dispose();// ÀàËÆÓÚIOÖĞµÄflush(),°ÑÍ¼ĞÎÊı¾İË¢µ½imgÖĞ
-        // °ÑÄÚ´æÍ¼Æ¬ img ¶ÔÏó±£´æµ½Ò»¸ö jpg ÎÄ¼ş
+        g.dispose();// ç±»ä¼¼äºIOä¸­çš„flush(),æŠŠå›¾å½¢æ•°æ®åˆ·åˆ°imgä¸­
+        // æŠŠå†…å­˜å›¾ç‰‡ img å¯¹è±¡ä¿å­˜åˆ°ä¸€ä¸ª jpg æ–‡ä»¶
         ImageIO.write(img, "JPEG", resp.getOutputStream());
     }
     
@@ -130,12 +129,12 @@ public class UserController {
         return "/user";
     }
     
-    //ĞŞ¸ÄÃÜÂë
+    //ä¿®æ”¹å¯†ç 
     @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
 	@ResponseBody
 	 public Object updatePassword(User user,HttpSession session) {
 		Map<String, Integer> map=new HashMap<String, Integer>();
-		//»ñµÃµ±Ç°µÇÂ¼ÓÃ»§id
+		//è·å¾—å½“å‰ç™»å½•ç”¨æˆ·id
 		int uid=((User)session.getAttribute("loginUser")).getUid();
 		user.setModifyBy(uid);
 		user.setModifyTime(new Date());
@@ -149,7 +148,7 @@ public class UserController {
 	}
     
     
-    //ÏÔÊ¾
+    //æ˜¾ç¤º
     @RequestMapping(value = "/getUserList",method = RequestMethod.GET)
     public String getUserList(Model model) {
     	

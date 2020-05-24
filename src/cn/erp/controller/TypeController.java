@@ -30,34 +30,34 @@ public class TypeController {
     public String addType(@RequestParam("typeName") String typeName,
         @RequestParam("typeNotes") String typeNotes,
         HttpSession session) {
-        // »ñµÃµ±Ç°µÇÂ¼µÄÓÃ»§id
+        // è·å¾—å½“å‰ç™»å½•çš„ç”¨æˆ·id
         int uid = ((User)session.getAttribute("loginUser")).getUid();
-        // ´´½¨ÀàĞÍ¶ÔÏó
+        // åˆ›å»ºç±»å‹å¯¹è±¡
         Type type = new Type(typeName, typeNotes, uid, new Date());
         boolean isOk = typeService.addType(type);
         if (isOk) {
-            // È¥»ñµÃÀàĞÍ±íÖĞµÄËùÓĞÊı¾İ
+            // å»è·å¾—ç±»å‹è¡¨ä¸­çš„æ‰€æœ‰æ•°æ®
             return "redirect:getList";
         }
         return "/type";
     }
     
-    // ´´½¨Ò»¸ö»ñµÃËùÓĞ·ÖÀàĞÅÏ¢µÄÇëÇó
+    // åˆ›å»ºä¸€ä¸ªè·å¾—æ‰€æœ‰åˆ†ç±»ä¿¡æ¯çš„è¯·æ±‚
     @RequestMapping(value="/getList",method=RequestMethod.GET)
     public String getList(
         @RequestParam(name="currpage",required=false,defaultValue="1") int currpage, 
         Model model) {
-        // µ÷ÓÃPageHelpÀàµÄ·½·¨,startPage ¾ÍÊÇÈ¥»ñµÃ·ÖÒ³µÄÊı¾İ
+        // è°ƒç”¨PageHelpç±»çš„æ–¹æ³•,startPage å°±æ˜¯å»è·å¾—åˆ†é¡µçš„æ•°æ®
         PageHelper.startPage(currpage, 3);
-        // ½«²éÑ¯µÄµ½µÄÊı¾İ±£´æµ½modelÖĞ
+        // å°†æŸ¥è¯¢çš„åˆ°çš„æ•°æ®ä¿å­˜åˆ°modelä¸­
         List<Type> list = typeService.getTypeList();
-        // ´´½¨Ò»¸ö·ÖÒ³ÀàµÄÊµÀı
+        // åˆ›å»ºä¸€ä¸ªåˆ†é¡µç±»çš„å®ä¾‹
         PageInfo pageInfo = new PageInfo(list, 3);
         model.addAttribute("pageInfo", pageInfo);
         return "/type";
     }
     
-    // É¾³ıÊı¾İµÄÇëÇó·½·¨
+    // åˆ é™¤æ•°æ®çš„è¯·æ±‚æ–¹æ³•
     @RequestMapping(value="/delType",method=RequestMethod.POST)
     @ResponseBody
     public Object delType(@RequestParam("id") int id) {
@@ -71,7 +71,7 @@ public class TypeController {
         return JSON.toJSONString(map);
     }
     
-    // ¸ù¾İid²éÑ¯·ÖÀàĞÅÏ¢µÄ·½·¨
+    // æ ¹æ®idæŸ¥è¯¢åˆ†ç±»ä¿¡æ¯çš„æ–¹æ³•
     @RequestMapping(value="/findById",method=RequestMethod.GET)
     @ResponseBody 
     public Object findById(@RequestParam("id") int id) {
@@ -79,16 +79,16 @@ public class TypeController {
         //model.addAttribute("type",type);
         return JSON.toJSONString(type);
     }
-    // ¸üĞÂ·ÖÀàĞÅÏ¢µÄÇëÇó·½·¨
+    // æ›´æ–°åˆ†ç±»ä¿¡æ¯çš„è¯·æ±‚æ–¹æ³•
     @RequestMapping(value="/updateType",method=RequestMethod.POST)
-    // ÒòÎªÒ³ÃæÉÏ´«µİµÄÊÇ±íµ¥Êı¾İ£¬¶ø±íµ¥²Ù×÷µÄÊÇÊµÌåÀàĞÍ£¬ËùÒÔÎÒÃÇÕâÀï¾ÍÊ¹ÓÃÊµÌåÀàÀ´½øĞĞ½ÓÊÕ
+    // å› ä¸ºé¡µé¢ä¸Šä¼ é€’çš„æ˜¯è¡¨å•æ•°æ®ï¼Œè€Œè¡¨å•æ“ä½œçš„æ˜¯å®ä½“ç±»å‹ï¼Œæ‰€ä»¥æˆ‘ä»¬è¿™é‡Œå°±ä½¿ç”¨å®ä½“ç±»æ¥è¿›è¡Œæ¥æ”¶
     @ResponseBody
     public Object updateType(Type type,HttpSession session) {
         Map<String, Integer> map = new HashMap<String, Integer>();
         //System.out.println(type.getTypeName());
-        // »ñµÃµ±Ç°µÇÂ¼ÓÃ»§µÄid
+        // è·å¾—å½“å‰ç™»å½•ç”¨æˆ·çš„id
         int uid = ((User)session.getAttribute("loginUser")).getUid();
-        // ÎªÕâ¸ö·ÖÀà¶ÔÏóÉèÖÃĞèÒªµÄÖµ
+        // ä¸ºè¿™ä¸ªåˆ†ç±»å¯¹è±¡è®¾ç½®éœ€è¦çš„å€¼
         type.setModifyBy(uid);
         type.setModifyTime(new Date());
         boolean isOk = typeService.updateType(type);

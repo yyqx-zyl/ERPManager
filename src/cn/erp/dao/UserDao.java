@@ -13,45 +13,45 @@ import cn.erp.pojo.Inbound;
 import cn.erp.pojo.User;
 
 /**
- * ²Ù×÷Êı¾İ¿â±íµÄ½Ó¿Ú
+ * æ“ä½œæ•°æ®åº“è¡¨çš„æ¥å£
  * @author lindy
- * @´´½¨Ê±¼ä 2020Äê5ÔÂ12ÈÕÉÏÎç10:37:01
+ * @åˆ›å»ºæ—¶é—´ 2020å¹´5æœˆ12æ—¥ä¸Šåˆ10:37:01
  */
 @Repository
 public interface UserDao {
-    // µÇÂ¼ÑéÖ¤ username,password
-    // ²ÎÊıÖµ¹Ì¶¨£¬ÎÒÃÇ¾Í¿ÉÒÔÊ¹ÓÃ@Param×¢½âÀ´ÊµÏÖ´«²Î
+    // ç™»å½•éªŒè¯ username,password
+    // å‚æ•°å€¼å›ºå®šï¼Œæˆ‘ä»¬å°±å¯ä»¥ä½¿ç”¨@Paramæ³¨è§£æ¥å®ç°ä¼ å‚
     User loginValider(@Param("username") String userName,
         @Param("userpassword") String password);
     
     List<User> getAll();
     
-  //ĞŞ¸ÄÃÜÂë
+  //ä¿®æ”¹å¯†ç 
   		@Update("update erp_user set userpassword=#{userpassword}"
   				+ "where uid=#{uid}")
   		int updatePassword(User user);
     
-  //ÏÔÊ¾ËùÓĞ
+  //æ˜¾ç¤ºæ‰€æœ‰
   	List<User> getUserList();
   	
   	
-  	//Ôö¼Ó
+  	//å¢åŠ 
   	@Insert("INSERT INTO erp_user (uname,userName,userpassword,gender,birthday,phone,place,email,Introg,userrole,createBy,createTime)" +
   			"values(#{uname},#{userName},#{userpassword},#{gender},#{birthday},#{phone},"
   			+ "#{place},#{email},#{Introg},#{userrole},#{createBy},#{createTime})")
   	int addUser(User user);
   	
-  	//ĞŞ¸Ä
+  	//ä¿®æ”¹
   	@Update("update erp_user set uname=#{uname},userName=#{userName},userpassword=#{userpassword},gender=#{gender},"
   			+ "birthday=#{birthday},phone=#{phone},place=#{place},email=#{email},Introg=#{Introg},"
   			+ "userrole=#{userrole},createBy=#{createBy},createTime=#{createTime}")
   	int updateUser(User user);
   	
-  	//É¾³ı
+  	//åˆ é™¤
   	@Delete("delete from erp_user where uid=#{uid}")
   	int deleteUser(@Param("uid") int uid);
   	
-  	//¸ù¾İid²éÑ¯
+  	//æ ¹æ®idæŸ¥è¯¢
   	@Select("select * from erp_user where uid=#{uid}")
   	User findById(@Param("uid") int uid);
   	

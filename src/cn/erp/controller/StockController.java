@@ -31,7 +31,7 @@ public class StockController {
     private StockService stockService;
     @Autowired
     private TypeService typeService;
-    // ¶¨ÒåÒ»¸ö»ñµÃËùÓĞÊı¾İµÄ·½·¨
+    // å®šä¹‰ä¸€ä¸ªè·å¾—æ‰€æœ‰æ•°æ®çš„æ–¹æ³•
     @RequestMapping(value="/getStockList",method=RequestMethod.GET)
     @ResponseBody
     public Object getStockList(@RequestParam(name="currpage",required=false,defaultValue="1") int currpage) {
@@ -41,7 +41,7 @@ public class StockController {
         return JSON.toJSONString(pageInfo);
     }
     
-    // ÇëÇóËùÓĞµÄ¿â´æĞÅÏ¢
+    // è¯·æ±‚æ‰€æœ‰çš„åº“å­˜ä¿¡æ¯
     @RequestMapping(value="/getStockList",method=RequestMethod.POST)
     @ResponseBody
     public Object getList() {
@@ -56,12 +56,12 @@ public class StockController {
         return JSON.toJSONString(list);
     }
     
-    // Ôö¼Ó¿â´æĞÅÏ¢µÄ·½·¨
+    // å¢åŠ åº“å­˜ä¿¡æ¯çš„æ–¹æ³•
     @RequestMapping(value="/addStock",method=RequestMethod.POST)
     @ResponseBody
     public Object addStock(Stock stock,HttpSession session) {
         Map<String, Integer> map = new HashMap<String, Integer>();
-        // µ÷ÓÃÔö¼ÓÊı¾İµÄ·½·¨
+        // è°ƒç”¨å¢åŠ æ•°æ®çš„æ–¹æ³•
         int uid = ((User)session.getAttribute("loginUser")).getUid();
         stock.setCreateBy(uid);
         stock.setCreateTime(new Date());
@@ -74,7 +74,7 @@ public class StockController {
         return JSON.toJSONString(map);
     }
     
-    // É¾³ı¿â´æĞÅÏ¢µÄ·½·¨
+    // åˆ é™¤åº“å­˜ä¿¡æ¯çš„æ–¹æ³•
     @RequestMapping(value="/deleteStock",method=RequestMethod.GET)
     @ResponseBody
     public Object deleteStock(@RequestParam("id") int sid) {
@@ -88,11 +88,11 @@ public class StockController {
         return JSON.toJSONString(map);
     }
     
-    // ¸ù¾İidÕÒÊµÌåµÄÇëÇó
+    // æ ¹æ®idæ‰¾å®ä½“çš„è¯·æ±‚
     @RequestMapping(value="/findById",method=RequestMethod.GET)
     @ResponseBody
     public Object findById(@RequestParam("id") int id) {
-        // µ÷ÓÃÍ¨¹ıid²éÕÒÊµÌåµÄ·½·¨
+        // è°ƒç”¨é€šè¿‡idæŸ¥æ‰¾å®ä½“çš„æ–¹æ³•
         Stock stock = stockService.findById(id);
         return JSON.toJSONString(stock);
     }
@@ -101,7 +101,7 @@ public class StockController {
     @ResponseBody
     public Object updateStock(Stock stock,HttpSession session) {
         Map<String, Integer> map = new HashMap<String, Integer>();
-        // µ÷ÓÃÔö¼ÓÊı¾İµÄ·½·¨
+        // è°ƒç”¨å¢åŠ æ•°æ®çš„æ–¹æ³•
         int uid = ((User)session.getAttribute("loginUser")).getUid();
         stock.setModifyBy(uid);
         stock.setModifyTime(new Date());

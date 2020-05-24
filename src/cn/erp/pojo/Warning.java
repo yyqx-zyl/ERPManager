@@ -4,9 +4,9 @@ import java.util.Date;
 
 import lombok.Data;
 /**
- * Ô¤¾¯ÊµÌåÀà
+ * é¢„è­¦å®ä½“ç±»
  * @author lindy
- * @´´½¨Ê±¼ä 2020Äê5ÔÂ22ÈÕÉÏÎç9:12:13
+ * @åˆ›å»ºæ—¶é—´ 2020å¹´5æœˆ22æ—¥ä¸Šåˆ9:12:13
  */
 @Data
 public class Warning {
@@ -14,12 +14,12 @@ public class Warning {
     private int sid;
     private int typeId;
     private int warnNum;
-    private String remark;//±¸×¢
+    private String remark;//å¤‡æ³¨
     private int createBy;
     private Date createTime;
     private int modifyBy;
     private Date modifyTime;
-    // Éæ¼°µ½¶à±í²éÑ¯
+    // æ¶‰åŠåˆ°å¤šè¡¨æŸ¥è¯¢
     private Type type;
     private Stock stock;
 }

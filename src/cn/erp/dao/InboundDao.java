@@ -15,24 +15,24 @@ import cn.erp.pojo.Stock;
 @Repository
 public interface InboundDao {
 
-	//ÏÔÊ¾ËùÓĞ
+	//æ˜¾ç¤ºæ‰€æœ‰
 	List<Inbound> getInboundList();
 	
-	//Ôö¼Ó
+	//å¢åŠ 
 	@Insert("insert into erp_inbound(productName,typeId,wareNum,remarks,wareDate,createBy)"
 			+"values(#{productName},#{typeId},#{wareNum},#{remarks},#{wareDate},#{createBy})")
 	int addInbound(Inbound inbound);
 	
-	//ĞŞ¸Ä
+	//ä¿®æ”¹
 	@Update("update erp_inbound set productName=#{productName},typeId=#{typeId},wareNum=#{wareNum},"
 	        + "remarks=#{remarks},modifyBy=#{modifyBy},modifyTime=#{modifyTime} where inId=#{inId}")
 	int updateInbound(Inbound inbound);
 	
-	//É¾³ı
+	//åˆ é™¤
 	@Delete("delete from erp_inbound where inId=#{inId}")
 	int deleteInbound(@Param("inId") int inId);
 	
-	//¸ù¾İid²éÑ¯
+	//æ ¹æ®idæŸ¥è¯¢
 	@Select("select * from erp_inbound where inId=#{inId}")
 	Inbound findById(@Param("inId") int inId);
 	

@@ -6,18 +6,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
-@NoArgsConstructor//ÎŞ²Î¹¹Ôì
-@AllArgsConstructor//´øËùÓĞ²ÎÊı¹¹Ôì
+@NoArgsConstructor//æ— å‚æ„é€ 
+@AllArgsConstructor//å¸¦æ‰€æœ‰å‚æ•°æ„é€ 
 public class Inbound {
 	private int inId;
-	private String productName;//ÉÌÆ·Ãû³Æ
-	private int typeId;//ÉÌÆ··ÖÀà
-	private String wareNum;//Èë¿âÊıÁ¿
+	private String productName;//å•†å“åç§°
+	private int typeId;//å•†å“åˆ†ç±»
+	private String wareNum;//å…¥åº“æ•°é‡
 	private String remarks;
-	private Date wareDate;//Èë¿âÊ±¼ä
-	private int createBy;//´´½¨Õß
-	private int modifyBy;//ĞŞ¸ÄÕß
-	private Date modifyTime;//ĞŞ¸ÄÊ±¼ä
+	private Date wareDate;//å…¥åº“æ—¶é—´
+	private int createBy;//åˆ›å»ºè€…
+	private int modifyBy;//ä¿®æ”¹è€…
+	private Date modifyTime;//ä¿®æ”¹æ—¶é—´
 
 	private Type type;
 }

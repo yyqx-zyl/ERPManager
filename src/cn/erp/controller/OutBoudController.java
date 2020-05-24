@@ -29,18 +29,13 @@ import cn.erp.pojo.Warning;
 import cn.erp.service.OutBoudService;
 import cn.erp.service.WarningServices;
 
-/**
- * Ô¤¾¯¹ÜÀíµÄ¿ØÖÆÀà
- * @author lindy
- * @´´½¨Ê±¼ä 2020Äê5ÔÂ22ÈÕÉÏÎç9:55:33
- */
 @Controller
 @RequestMapping("/out")
 public class OutBoudController {
     @Autowired
     private OutBoudService outboudService;
     
-    // »ñµÃËùÓĞÔ¤¾¯ĞÅÏ¢µÄÇëÇó
+    // è·å¾—æ‰€æœ‰é¢„è­¦ä¿¡æ¯çš„è¯·æ±‚
     @RequestMapping(value="/getOutBoudList",method=RequestMethod.GET)
     public ModelAndView getOutBoudList(@RequestParam(name="currpage",required=false,defaultValue="1") int currpage) {
     	PageHelper.startPage(currpage, 3);
@@ -51,7 +46,7 @@ public class OutBoudController {
         return mav;
     }
     
-    // ±£´æÔ¤¾¯ĞÅÏ¢µÄ·½·¨
+    // ä¿å­˜é¢„è­¦ä¿¡æ¯çš„æ–¹æ³•
     @RequestMapping(value="/saveOutBoud",method=RequestMethod.POST)
     public String saveOutBoud(HttpServletRequest request,HttpSession session) {
         int typeId = Integer.parseInt(request.getParameter("typeId"));
@@ -59,7 +54,7 @@ public class OutBoudController {
         int outNum = Integer.parseInt(request.getParameter("outNum"));
         String remark = request.getParameter("remark");
         int uid = ((User)session.getAttribute("loginUser")).getUid();
-        // ´´½¨Ò»¸ö±£´æµÄÔ¤¾¯¶ÔÏó
+        // åˆ›å»ºä¸€ä¸ªä¿å­˜çš„é¢„è­¦å¯¹è±¡
         OutBoud out = new OutBoud();
         out.setTypeId(typeId);
         out.setSid(sid);
@@ -76,7 +71,7 @@ public class OutBoudController {
     }
     
 
-	//É¾³ıĞÅÏ¢
+	//åˆ é™¤ä¿¡æ¯
 		@RequestMapping(value = "/deleteOutBoud",method = RequestMethod.GET)
 		@ResponseBody
 		public Object deleteOutBoud(@RequestParam("id") int oid) {
@@ -93,7 +88,7 @@ public class OutBoudController {
     
     
     
-		//¸ù¾İidÕÒÊµÌåµÄÇëÇó
+		//æ ¹æ®idæ‰¾å®ä½“çš„è¯·æ±‚
 		@RequestMapping(value = "/findById",method = RequestMethod.GET)
 		@ResponseBody
 		public Object findById(@RequestParam("id") int oid,Model model) {
@@ -102,13 +97,13 @@ public class OutBoudController {
 		}
 			
     
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		@RequestMapping(value = "/updateOutBoud",method = RequestMethod.POST,
 				produces="application/json;charset=UTF-8")
 		@ResponseBody
 		public Object updateOutBoud(OutBoud outBoud,HttpSession session) {
 			Map<String, Integer> map=new HashMap<String, Integer>();
-			//»ñµÃµ±Ç°µÇÂ¼ÓÃ»§id
+			//è·å¾—å½“å‰ç™»å½•ç”¨æˆ·id
 			int uid=((User)session.getAttribute("loginUser")).getUid();
 			outBoud.setModifyBy(uid);
 			outBoud.setModifyTime(new Date());

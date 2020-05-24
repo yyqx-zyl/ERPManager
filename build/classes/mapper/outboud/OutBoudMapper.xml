@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.erp.dao.OutBoudDao">
+	<!-- 查询预警信息的映射 -->
+	<select id="getOutBoudList" resultMap="oList">
+		select o.*,s.productName,t.typeName from erp_outboud o
+		inner join erp_stock s on(o.sid=s.sid)
+		inner join erp_type t on(o.typeId=t.tid)
+	</select>
+	
+	<resultMap type="OutBoud" id="oList" autoMapping="true">
+		<association property="type" javaType="Type">
+			<id column="tid" property="tid"/>
+			<result column="typeName" property="typeName"/>
+		</association>
+		<association property="stock" javaType="Stock">
+			<id column="sid" property="sid"/>
+			<result column="productName" property="productName"/>
+		</association>
+	</resultMap>
+</mapper>	
