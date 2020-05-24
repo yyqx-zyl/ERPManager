@@ -5,7 +5,7 @@
 <mapper namespace="cn.erp.dao.OutBoudDao">
 	<!-- 查询预警信息的映射 -->
 	<select id="getOutBoudList" resultMap="oList">
-		select o.*,s.productName,t.typeName from erp_outboud o
+		select o.*,s.productName,t.typeName from erp_outbound o
 		inner join erp_stock s on(o.sid=s.sid)
 		inner join erp_type t on(o.typeId=t.tid)
 	</select>

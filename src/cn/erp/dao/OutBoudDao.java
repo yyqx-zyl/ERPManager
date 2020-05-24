@@ -16,17 +16,17 @@ import cn.erp.pojo.Warning;
 public interface OutBoudDao {
     List<OutBoud> getOutBoudList();
     
-    @Insert("insert into erp_outboud(sid,typeId,outNum,remark,createBy,createTime)"
-        + " values(#{sid},#{typeId},#{outNum},#{remark},#{createBy},#{createTime})")
+    @Insert("insert into erp_outbound(sid,typeId,outNum,remarks,createBy,createTime)"
+        + "values(#{sid},#{typeId},#{outNum},#{remarks},#{createBy},#{createTime})")
     int addOutBoud(OutBoud outBoud);
     
-    @Update("update erp_outboud set sid=#{sid},typeId=#{typeId},outNum=#{outNum},remark=#{remark},"
+    @Update("update erp_outbound set sid=#{sid},typeId=#{typeId},outNum=#{outNum},remarks=#{remarks},"
         + "modifyBy=#{modifyBy},modifyTime=#{modifyTime} where oid=#{oid}")
     int updateOutBoud(OutBoud outBoud);
     
-    @Delete("delete from erp_outboud where oid=#{oid}")
+    @Delete("delete from erp_outbound where oid=#{oid}")
     int delOutBoud(@Param("oid") int oid);
     
-    @Select("select * from erp_outboud where oid=#{oid}")
+    @Select("select * from erp_outbound where oid=#{oid}")
     OutBoud findById(@Param("oid") int oid);
 }

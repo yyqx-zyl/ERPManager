@@ -59,7 +59,7 @@ public class OutBoudController {
         out.setTypeId(typeId);
         out.setSid(sid);
         out.setOutNum(outNum);
-        out.setRemark(remark);
+        out.setRemarks(remark);
         out.setCreateBy(uid);
         out.setCreateTime(new Date());
         boolean isOk = outboudService.addOutBoud(out);
@@ -98,8 +98,7 @@ public class OutBoudController {
 			
     
 		//修改
-		@RequestMapping(value = "/updateOutBoud",method = RequestMethod.POST,
-				produces="application/json;charset=UTF-8")
+		@RequestMapping(value = "/updateOutBoud",produces="application/json;charset=UTF-8")
 		@ResponseBody
 		public Object updateOutBoud(OutBoud outBoud,HttpSession session) {
 			Map<String, Integer> map=new HashMap<String, Integer>();
